@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
-    <title>Split</title>
+    <title>Splitter</title>
 </head>
 <body>
     <div class="container">
@@ -28,7 +28,7 @@
                                     <div class="space">
 
                                     </div>
-                                    <input type="text" name="bills" id="" class="bills-input">
+                                    <input type="text" name="bills" id="" class="bills-input" placeholder="0">
                                 </div>
                             </div>
                             <div class="select-tip-wrap">
@@ -36,10 +36,10 @@
                                     Select Tip %
                                 </h3>
                                 <div class="select-tip-wrap-top">
-                                    <button class="percentage-tip">
+                                    <button class="percentage-tip" id="percentage-tip-5">
                                         5%
                                     </button>
-                                    <button class="percentage-tip">
+                                    <button class="percentage-tip" id="percentage-tip-10">
                                         10%
                                     </button>
                                     <button class="percentage-tip" id="percentage-tip-15">
@@ -47,14 +47,14 @@
                                     </button>
                                 </div>
                                 <div class="select-tip-wrap-buttom">
-                                    <button class="percentage-tip">
+                                    <button class="percentage-tip" id="percentage-tip-25">
                                         25%
                                     </button>
-                                    <button class="percentage-tip">
+                                    <button class="percentage-tip" id="percentage-tip-50">
                                         50%
                                     </button>
                                     <button class="percentage-tip" id="percentage-tip-custom">
-                                        Custom
+                                        <input class="percentage-tip-custom-input" id="" placeholder="Custom">
                                     </button>
                                 </div>
                             </div>
@@ -69,7 +69,7 @@
                                     <div class="space">
 
                                     </div>
-                                    <input type="text" name="numberofpeople" id="" class="number-of-people-input">
+                                    <input type="text" name="numberofpeople" id="" class="number-of-people-input" placeholder="0">
                                 </div>
                             </div>
                         </div>
@@ -84,8 +84,8 @@
                                             <span>/ Person</span>
                                         </h3>
                                     </div>
-                                    <div class="right-code-dispaly-number">
-                                        $4.27
+                                    <div class="right-code-dispaly-number" >
+                                        $0.00
                                     </div>
                                 </div>
                                 <div class="right-code-dispaly-bottom">
@@ -95,8 +95,8 @@
                                             <span>/ Person</span>
                                         </h3>
                                     </div>
-                                    <div class="right-code-dispaly-number">
-                                        $3.27
+                                    <div class="right-code-dispaly-number-other">
+                                        $0.00
                                     </div>
                                 </div>
                             </div>
@@ -111,8 +111,11 @@
             </div>
         </div>
     </div>
+    <div class="look">
+        <div class="spinning-loader"></div>
+        PLEASE LOAD ON A DESKTOP
+    </div>
     <script src="/script.js">
-
     </script>
 </body>
 </html>
