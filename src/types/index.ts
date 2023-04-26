@@ -4,4 +4,12 @@ export type ButtonProps = {
     text : any
 }
 
+export type InputProps = {
+    type : string,
+    id : string,
+    placeholder: string,
+    style?: string,
+    label : string
+}
+
 
