@@ -31,7 +31,7 @@ export default function Login() {
           </a>
         </div>
       </div>
-      <div className=" text-sm flex justify-end gap-4">
+      <div className=" text-sm flex justify-end gap-4 text-white">
         Not registered?{" "}
         <a href="#" className=" text-sm block text-blue-700 hover:underline">
           Create account
