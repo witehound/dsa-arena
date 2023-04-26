@@ -1,3 +1,4 @@
+import { IoClose } from "react-icons/io5";
 export default function ModalLayout() {
   return (
     <>
@@ -10,7 +11,7 @@ export default function ModalLayout() {
                 type="button"
                 className="bg-transparent  rounded-lg text-sm p-1.5 ml-auto inline-flex items-center hover:bg-gray-800 hover:text-white text-white"
               >
-                X
+                <IoClose className=" h-5 w-5" />
               </button>
             </div>
           </div>
