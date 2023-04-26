@@ -10,7 +10,9 @@ export default function Authentication() {
       <div className=" bg-gradient-to-b from-gray-600 to-black h-screen relative flex items-center flex-col w-full">
         <div className="min-w-[1280px]">
           <Navbar />
-          Authentication page
+          <div className=" flex items-center justify-center h-[calc(100vh-5rem)] pointer-events-none select-none">
+            <img src="hero.png" alt="hero image" className="" />
+          </div>
         </div>
       </div>
     </>
