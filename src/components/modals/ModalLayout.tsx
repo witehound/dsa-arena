@@ -1,4 +1,5 @@
 import { IoClose } from "react-icons/io5";
+import { Login } from "./Auth";
 export default function ModalLayout() {
   return (
     <>
@@ -14,6 +15,7 @@ export default function ModalLayout() {
                 <IoClose className=" h-5 w-5" />
               </button>
             </div>
+            <Login />
           </div>
         </div>
       </div>
