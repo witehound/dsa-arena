@@ -1,4 +1,5 @@
 import { Navbar } from "@/components";
+import { ModalLayout } from "@/components/modals";
 import Head from "next/head";
 
 export default function Authentication() {
@@ -13,6 +14,7 @@ export default function Authentication() {
           <div className=" flex items-center justify-center h-[calc(100vh-5rem)] pointer-events-none select-none">
             <img src="hero.png" alt="hero image" className="" />
           </div>
+          <ModalLayout />
         </div>
       </div>
     </>
