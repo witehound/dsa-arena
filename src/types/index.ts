@@ -1,3 +1,4 @@
+import { ChangeEventHandler } from "react"
 
 
 
@@ -13,7 +14,9 @@ export type InputProps = {
     id : string,
     placeholder: string,
     style?: string,
-    label : string
+    label: string
+    handleInputChange?: ChangeEventHandler<HTMLInputElement>,
+    formik?: any
 }
 
 export type loginType = "login"
