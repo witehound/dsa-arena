@@ -11,9 +11,16 @@ export default function Input({
 }: InputProps) {
   return (
     <div>
-      <label htmlFor={id} className="text-sm block mb-2 text-gray-200">
-        {label}
-      </label>
+      <div className=" flex items-center justify-between">
+        <label htmlFor={id} className="text-sm block mb-2 text-gray-200">
+          {label}
+        </label>
+        {formik.touched[id] && formik.errors[id] ? (
+          <div className=" text-red-500 text-[10px] font-thin">
+            {formik.errors[id]}
+          </div>
+        ) : null}
+      </div>
       <input
         onChange={handleInputChange}
         type={type}
@@ -23,9 +30,6 @@ export default function Input({
         placeholder={placeholder}
         {...formik.getFieldProps(id)}
       />
-      {formik.touched[id] && formik.errors[id] ? (
-        <div>{formik.errors[id]}</div>
-      ) : null}
     </div>
   );
 }
