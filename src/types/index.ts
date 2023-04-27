@@ -1,3 +1,6 @@
+
+
+
 export type ButtonProps = {
     style: string,
     type: "button" | "submit" | "reset" | undefined,
@@ -11,5 +14,13 @@ export type InputProps = {
     style?: string,
     label : string
 }
+
+export type loginType = "login"
+export type registerType = "register"
+export type forgotPasswordType = "forgotpassword"
+
+export type AuthModaltypes = loginType | registerType| forgotPasswordType 
+
+
 
 
