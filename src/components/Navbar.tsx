@@ -1,12 +1,12 @@
 import Link from "next/link";
 import { Button } from ".";
 import { useRecoilState, useSetRecoilState } from "recoil";
-import { authModalState } from "@/atoms/authModal.atom";
+import { atomAuthModalState } from "@/atoms/authModal.atom";
 
 export default function Navbar() {
-  const setAuthModalState = useSetRecoilState(authModalState);
+  const setatomAuthModalState = useSetRecoilState(atomAuthModalState);
   const handleClick = () => {
-    setAuthModalState((prev) => ({ ...prev, isOpen: true }));
+    setatomAuthModalState((prev) => ({ ...prev, isOpen: true }));
   };
   return (
     <div className="flex items-center w-full justify-between sm:px-12 px-2 md:px-24">

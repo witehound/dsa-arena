@@ -1,11 +1,11 @@
-import { authModalState } from "@/atoms/authModal.atom";
+import { atomAuthModalState } from "@/atoms/authModal.atom";
 import { Navbar } from "@/components";
 import { ModalLayout } from "@/components/modals";
 import Head from "next/head";
 import { useRecoilValue } from "recoil";
 
 export default function Authentication() {
-  const { isOpen } = useRecoilValue(authModalState);
+  const { isOpen } = useRecoilValue(atomAuthModalState);
   return (
     <>
       <Head>

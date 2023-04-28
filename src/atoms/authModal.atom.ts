@@ -2,19 +2,19 @@ import { AuthModaltypes } from "@/types"
 import { LOGIN } from "@/constants"
 import { atom } from "recoil"
 
-type AuthModalState = {
+type atomAuthModalState = {
     isOpen: boolean
     type : AuthModaltypes
 }
 
 
-const initialAuthModalState: AuthModalState = {
+const initialatomAuthModalState: atomAuthModalState = {
     isOpen: false,
     type : LOGIN
 }
 
 
-export const authModalState = atom<AuthModalState>({
-    key: "authModalState",
-    default : initialAuthModalState
+export const atomAuthModalState = atom<atomAuthModalState>({
+    key: "atomAuthModalState",
+    default : initialatomAuthModalState
 })
