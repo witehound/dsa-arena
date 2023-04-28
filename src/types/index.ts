@@ -5,7 +5,7 @@ export type ButtonProps = {
     style: string,
     type: "button" | "submit" | "reset" | undefined,
     text: any,
-    handleClick? : () => void
+    handleClick?: () => void 
 }
 
 export type InputProps = {

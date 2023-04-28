@@ -15,6 +15,6 @@ const initialatomAuthModalState: atomAuthModalState = {
 
 
 export const atomAuthModalState = atom<atomAuthModalState>({
-    key: "atomAuthModalState",
+    key: "AuthModalState",
     default : initialatomAuthModalState
 })

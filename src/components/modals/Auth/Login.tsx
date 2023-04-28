@@ -1,6 +1,14 @@
+import { atomAuthModalState } from "@/atoms/authModal.atom";
 import { Button, Input } from "@/components";
+import { FORGOT_PASSWORD, REGISTER } from "@/constants";
+import { AuthModaltypes } from "@/types";
+import { useSetRecoilState } from "recoil";
 
 export default function Login() {
+  const setatomAuthModalState = useSetRecoilState(atomAuthModalState);
+  const handleChangeAuthModalState = (type: AuthModaltypes) => {
+    setatomAuthModalState((prev) => ({ ...prev, type: type }));
+  };
   return (
     <form className="px-6 py-4 flex flex-col gap-4">
       <h3 className=" text-xl text-white">Log in to DSArena</h3>
@@ -23,19 +31,22 @@ export default function Login() {
           type="submit"
         />
         <div>
-          <a
-            href="#"
-            className=" text-sm block text-brand-orange hover:underline"
-          >
-            Forgot password
-          </a>
+          <Button
+            handleClick={() => handleChangeAuthModalState(FORGOT_PASSWORD)}
+            style="text-sm block text-brand-orange hover:underline"
+            text={"Forgot password"}
+            type="button"
+          />
         </div>
       </div>
-      <div className=" text-sm flex justify-end gap-4 text-white">
+      <div className=" text-sm flex justify-end gap-4 text-white items-center">
         Not registered?{" "}
-        <a href="#" className=" text-sm block text-blue-700 hover:underline">
-          Create account
-        </a>
+        <Button
+          handleClick={() => handleChangeAuthModalState(REGISTER)}
+          style="text-sm block text-blue-700 hover:underline"
+          text={"Create account"}
+          type="button"
+        />
       </div>
     </form>
   );
