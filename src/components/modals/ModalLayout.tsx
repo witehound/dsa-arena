@@ -2,8 +2,11 @@ import { IoClose } from "react-icons/io5";
 import { Login, Signup, ResetPassword } from "./Auth";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { atomAuthModalState } from "@/atoms/authModal.atom";
+import { FORGOT_PASSWORD, LOGIN, REGISTER } from "@/constants";
 export default function ModalLayout() {
-  const [, setatomAuthModalState] = useRecoilState(atomAuthModalState);
+  const [{ isOpen, type }, setatomAuthModalState] =
+    useRecoilState(atomAuthModalState);
+
   return (
     <>
       <div className="absolute top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-60"></div>
@@ -18,9 +21,13 @@ export default function ModalLayout() {
                 <IoClose className=" h-5 w-5" />
               </button>
             </div>
-            {/* <Login /> */}
-            {/* <Signup /> */}
-            <ResetPassword />
+            {type == LOGIN ? (
+              <Login />
+            ) : type == REGISTER ? (
+              <Signup />
+            ) : type == FORGOT_PASSWORD ? (
+              <ResetPassword />
+            ) : null}
           </div>
         </div>
       </div>
