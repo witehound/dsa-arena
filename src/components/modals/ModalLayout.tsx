@@ -1,16 +1,10 @@
 import { IoClose } from "react-icons/io5";
 import { Login, Signup, ResetPassword } from "./Auth";
-import { useRecoilState, useRecoilValue } from "recoil";
-import { atomAuthModalState } from "@/atoms/authModal.atom";
 import { FORGOT_PASSWORD, LOGIN, REGISTER } from "@/constants";
+import { useHandleAuthModel } from "@/hooks";
+
 export default function ModalLayout() {
-  const [{ isOpen, type }, setatomAuthModalState] =
-    useRecoilState(atomAuthModalState);
-
-  const handleClick = () => {
-    setatomAuthModalState((prev) => ({ ...prev, isOpen: false }));
-  };
-
+  const { handleCloseAuthModal, type } = useHandleAuthModel();
   return (
     <>
       <div className="absolute top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-60"></div>
@@ -20,7 +14,7 @@ export default function ModalLayout() {
             <div className="flex justify-end p-2">
               <button
                 type="button"
-                onClick={handleClick}
+                onClick={handleCloseAuthModal}
                 className="bg-transparent  rounded-lg text-sm p-1.5 ml-auto inline-flex items-center hover:bg-gray-800 hover:text-white text-white"
               >
                 <IoClose className=" h-5 w-5" />
