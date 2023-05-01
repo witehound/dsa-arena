@@ -2,7 +2,7 @@
 import { Button, Input } from "@/components";
 import { LOGIN } from "@/constants";
 import { useHandleAuthModel } from "@/hooks";
-import { useState } from "react";
+import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
 import { useFormik } from "formik";
 
 import * as Yup from "yup";
