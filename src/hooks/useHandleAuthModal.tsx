@@ -1,5 +1,7 @@
 import { atomAuthModalState } from "@/atoms/authModal.atom";
+import { LOGIN } from "@/constants";
 import { AuthModaltypes } from "@/types";
+import { useEffect } from "react";
 import { useRecoilState, useSetRecoilState } from "recoil";
 
 export default function useHandleAuthModel() {
@@ -10,8 +12,17 @@ export default function useHandleAuthModel() {
   };
 
   const handleCloseAuthModal = () => {
-    setatomAuthModalState((prev) => ({ ...prev, isOpen: false }));
+    setatomAuthModalState((prev) => ({ ...prev, isOpen: false, type: LOGIN }));
   };
+
+  useEffect(() => {
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key == "Escape") handleCloseAuthModal();
+    };
+    window.addEventListener("keydown", handleEscape);
+    return () => window.removeEventListener("keydown", handleEscape);
+  }, []);
+
   return {
     handleChangeAuthModalState,
     handleCloseAuthModal,

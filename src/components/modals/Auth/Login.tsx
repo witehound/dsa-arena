@@ -1,14 +1,9 @@
-import { atomAuthModalState } from "@/atoms/authModal.atom";
 import { Button, Input } from "@/components";
 import { FORGOT_PASSWORD, REGISTER } from "@/constants";
-import { AuthModaltypes } from "@/types";
-import { useSetRecoilState } from "recoil";
+import { useHandleAuthModel } from "@/hooks";
 
 export default function Login() {
-  const setatomAuthModalState = useSetRecoilState(atomAuthModalState);
-  const handleChangeAuthModalState = (type: AuthModaltypes) => {
-    setatomAuthModalState((prev) => ({ ...prev, type: type }));
-  };
+  const { handleChangeAuthModalState } = useHandleAuthModel();
   return (
     <form className="px-6 py-4 flex flex-col gap-4">
       <h3 className=" text-xl text-white">Log in to DSArena</h3>

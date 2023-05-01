@@ -1,4 +1,4 @@
-import useHandleAuthModel from "./useHandleAuthModels";
+import useHandleAuthModel from "./useHandleAuthModal";
 
 export {
     useHandleAuthModel
