@@ -14,7 +14,7 @@ export default function Login() {
   const router = useRouter();
   const [signInWithEmailandPassword, user, loading, error] =
     useSignInWithEmailAndPassword(firebaseAuth);
-  const { craeteToast } = useToasify();
+  const { createToast } = useToasify();
 
   const formik = useFormik({
     initialValues: {
@@ -36,9 +36,9 @@ export default function Login() {
         const existingUser = await signInWithEmailandPassword(email, password);
         if (!existingUser) return;
         router.push("/");
-        craeteToast(SUCCESS, "Log in Successful");
+        createToast(SUCCESS, "Log in Successful");
       } catch (error: any) {
-        craeteToast(
+        createToast(
           ERROR,
           fireBaseErrors[error?.message as keyof typeof fireBaseErrors]
         );
@@ -49,13 +49,13 @@ export default function Login() {
 
   useEffect(() => {
     if (error) {
-      craeteToast(
+      createToast(
         ERROR,
         fireBaseErrors[error?.message as keyof typeof fireBaseErrors]
       );
       console.log("ERROR : login user", error?.message);
     }
-  }, [error]);
+  }, [error, createToast]);
 
   return (
     <form

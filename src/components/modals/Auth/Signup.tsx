@@ -11,7 +11,7 @@ import { useRouter } from "next/router";
 
 export default function Signup() {
   const router = useRouter();
-  const { craeteToast } = useToasify();
+  const { createToast } = useToasify();
   const { handleChangeAuthModalState } = useHandleAuthModel();
   const [createNewUserWithEmailandPassword, user, loading, error] =
     useCreateUserWithEmailAndPassword(firebaseAuth);
@@ -42,9 +42,9 @@ export default function Signup() {
         );
         if (!newUser) return;
         router.push("/");
-        craeteToast(SUCCESS, "Registration Successful");
+        createToast(SUCCESS, "Registration Successful");
       } catch (error: any) {
-        craeteToast(
+        createToast(
           ERROR,
           fireBaseErrors[error?.message as keyof typeof fireBaseErrors]
         );
@@ -55,13 +55,13 @@ export default function Signup() {
 
   useEffect(() => {
     if (error) {
-      craeteToast(
+      createToast(
         ERROR,
         fireBaseErrors[error?.message as keyof typeof fireBaseErrors]
       );
       console.log("ERROR : register user", error?.message);
     }
-  }, [error]);
+  }, [error, createToast]);
 
   return (
     <form

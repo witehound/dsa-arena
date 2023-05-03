@@ -21,7 +21,7 @@ export default function useHandleAuthModel() {
     };
     window.addEventListener("keydown", handleEscape);
     return () => window.removeEventListener("keydown", handleEscape);
-  }, []);
+  }, [handleCloseAuthModal]);
 
   return {
     handleChangeAuthModalState,
