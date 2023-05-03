@@ -25,7 +25,7 @@ export default function Navbar() {
         <Button
           style="bg-brand-orange text-white hover:bg-white hover:text-brand-orange hover:border-2 hover:border-brand-orange transition duration-300 ease-in-out"
           type="button"
-          text="Sign In"
+          text="Log In"
           handleClick={handleClick}
         />
       </div>
