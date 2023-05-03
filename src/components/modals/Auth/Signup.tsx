@@ -1,10 +1,9 @@
 "use client";
 import { Button, Input } from "@/components";
-import { ERROR, LOGIN, SUCCES } from "@/constants";
+import { ERROR, LOGIN, SUCCESS } from "@/constants";
 import { useHandleAuthModel, useToasify } from "@/hooks";
 import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
 import { useFormik } from "formik";
-
 import * as Yup from "yup";
 import { useEffect } from "react";
 import { fireBaseErrors, firebaseAuth } from "@/firebase/firebase";
@@ -43,10 +42,7 @@ export default function Signup() {
         );
         if (!newUser) return;
         router.push("/");
-        craeteToast(
-          SUCCES,
-          fireBaseErrors[error?.message as keyof typeof fireBaseErrors]
-        );
+        craeteToast(SUCCESS, "Registration Successful");
       } catch (error: any) {
         craeteToast(
           ERROR,

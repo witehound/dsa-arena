@@ -10,4 +10,4 @@ export default function useToasify() {
   };
 }
 
-export type toastTypes = "success" | "error" | "info";
+export type toastTypes = "SUCCESSs" | "error" | "info";

@@ -1,12 +1,21 @@
 import { Button, Input } from "@/components";
-import { FORGOT_PASSWORD, REGISTER } from "@/constants";
-import { useHandleAuthModel } from "@/hooks";
+import { ERROR, FORGOT_PASSWORD, REGISTER, SUCCESS } from "@/constants";
+import { fireBaseErrors, firebaseAuth } from "@/firebase/firebase";
+import { useHandleAuthModel, useToasify } from "@/hooks";
 import { useFormik } from "formik";
+import { useRouter } from "next/router";
+import { useEffect } from "react";
+import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
 
 import * as Yup from "yup";
 
 export default function Login() {
   const { handleChangeAuthModalState } = useHandleAuthModel();
+  const router = useRouter();
+  const [signInWithEmailandPassword, user, loading, error] =
+    useSignInWithEmailAndPassword(firebaseAuth);
+  const { craeteToast } = useToasify();
+
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -16,27 +25,43 @@ export default function Login() {
 
     validationSchema: Yup.object({
       password: Yup.string()
-
         .max(15, "Must be 15 characters or less")
-
-        .required("Required"),
-
-      userName: Yup.string()
-
-        .max(20, "Must be 20 characters or less")
-
         .required("Required"),
 
       email: Yup.string().email("Invalid email address").required("Required"),
     }),
 
-    onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
+    onSubmit: async ({ email, password }) => {
+      try {
+        const existingUser = await signInWithEmailandPassword(email, password);
+        if (!existingUser) return;
+        router.push("/");
+        craeteToast(SUCCESS, "Log in Successful");
+      } catch (error: any) {
+        craeteToast(
+          ERROR,
+          fireBaseErrors[error?.message as keyof typeof fireBaseErrors]
+        );
+        console.log("ERROR : register user", error?.message);
+      }
     },
   });
 
+  useEffect(() => {
+    if (error) {
+      craeteToast(
+        ERROR,
+        fireBaseErrors[error?.message as keyof typeof fireBaseErrors]
+      );
+      console.log("ERROR : login user", error?.message);
+    }
+  }, [error]);
+
   return (
-    <form className="px-6 py-4 flex flex-col gap-4">
+    <form
+      className="px-6 py-4 flex flex-col gap-4"
+      onSubmit={formik.handleSubmit}
+    >
       <h3 className=" text-xl text-white">Log in to DSArena</h3>
       <Input
         type="email"
@@ -54,7 +79,7 @@ export default function Login() {
       />
       <div className=" flex justify-between align-bottom">
         <Button
-          text="Login"
+          text={loading ? "login in..." : "Login"}
           style="bg-brand-orange text-white hover:bg-white hover:text-brand-orange hover:border-brand-orange transition duration-300 ease-in-out"
           type="submit"
         />
