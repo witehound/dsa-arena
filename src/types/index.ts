@@ -19,6 +19,16 @@ export type InputProps = {
     formik?: any
 }
 
+export type Problem = {
+	id: string;
+	title: string;
+	difficulty: string;
+	category: string;
+	order: number;
+	videoId?: string;
+};
+
+
 export type loginType = "login"
 export type registerType = "register"
 export type forgotPasswordType = "forgotpassword"
