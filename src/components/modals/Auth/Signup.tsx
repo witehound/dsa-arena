@@ -6,9 +6,13 @@ import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
 import { useFormik } from "formik";
 
 import * as Yup from "yup";
+import { FormEvent } from "react";
+import { firebaseAuth } from "@/firebase/firebase";
 
 export default function Signup() {
   const { handleChangeAuthModalState } = useHandleAuthModel();
+  const [createNewUserWithEmailandPassword, user, loading, error] =
+    useCreateUserWithEmailAndPassword(firebaseAuth);
 
   const formik = useFormik({
     initialValues: {
@@ -33,10 +37,18 @@ export default function Signup() {
       email: Yup.string().email("Invalid email address").required("Required"),
     }),
 
-    onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
+    onSubmit: async ({ email, password }) => {
+      try {
+        createNewUserWithEmailandPassword(email, password);
+      } catch (error: any) {
+        alert(error.message);
+      }
     },
   });
+
+  // const handleRegister = async (e: FormEvent<HTMLInputElement>) => {
+
+  // };
 
   return (
     <form
