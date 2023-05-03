@@ -1,17 +1,18 @@
 "use client";
 import { Button, Input } from "@/components";
-import { LOGIN } from "@/constants";
-import { useHandleAuthModel } from "@/hooks";
+import { ERROR, LOGIN, SUCCES } from "@/constants";
+import { useHandleAuthModel, useToasify } from "@/hooks";
 import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
 import { useFormik } from "formik";
 
 import * as Yup from "yup";
-import { FormEvent, useEffect } from "react";
-import { firebaseAuth } from "@/firebase/firebase";
+import { useEffect } from "react";
+import { fireBaseErrors, firebaseAuth } from "@/firebase/firebase";
 import { useRouter } from "next/router";
 
 export default function Signup() {
   const router = useRouter();
+  const { craeteToast } = useToasify();
   const { handleChangeAuthModalState } = useHandleAuthModel();
   const [createNewUserWithEmailandPassword, user, loading, error] =
     useCreateUserWithEmailAndPassword(firebaseAuth);
@@ -42,14 +43,28 @@ export default function Signup() {
         );
         if (!newUser) return;
         router.push("/");
+        craeteToast(
+          SUCCES,
+          fireBaseErrors[error?.message as keyof typeof fireBaseErrors]
+        );
       } catch (error: any) {
-        alert(error.message);
+        craeteToast(
+          ERROR,
+          fireBaseErrors[error?.message as keyof typeof fireBaseErrors]
+        );
+        console.log("ERROR : register user", error?.message);
       }
     },
   });
 
   useEffect(() => {
-    console.log("ERR : sign up ", error?.message);
+    if (error) {
+      craeteToast(
+        ERROR,
+        fireBaseErrors[error?.message as keyof typeof fireBaseErrors]
+      );
+      console.log("ERROR : register user", error?.message);
+    }
   }, [error]);
 
   return (
