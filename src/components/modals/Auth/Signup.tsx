@@ -6,10 +6,12 @@ import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
 import { useFormik } from "formik";
 
 import * as Yup from "yup";
-import { FormEvent } from "react";
+import { FormEvent, useEffect } from "react";
 import { firebaseAuth } from "@/firebase/firebase";
+import { useRouter } from "next/router";
 
 export default function Signup() {
+  const router = useRouter();
   const { handleChangeAuthModalState } = useHandleAuthModel();
   const [createNewUserWithEmailandPassword, user, loading, error] =
     useCreateUserWithEmailAndPassword(firebaseAuth);
@@ -23,32 +25,32 @@ export default function Signup() {
 
     validationSchema: Yup.object({
       password: Yup.string()
-
         .max(15, "Must be 15 characters or less")
-
+        .min(6, "Must be 6 characters or more")
         .required("Required"),
-
       userName: Yup.string()
-
         .max(20, "Must be 20 characters or less")
-
         .required("Required"),
-
       email: Yup.string().email("Invalid email address").required("Required"),
     }),
 
     onSubmit: async ({ email, password }) => {
       try {
-        createNewUserWithEmailandPassword(email, password);
+        const newUser = await createNewUserWithEmailandPassword(
+          email,
+          password
+        );
+        if (!newUser) return;
+        router.push("/");
       } catch (error: any) {
         alert(error.message);
       }
     },
   });
 
-  // const handleRegister = async (e: FormEvent<HTMLInputElement>) => {
-
-  // };
+  useEffect(() => {
+    console.log("ERR : sign up ", error?.message);
+  }, [error]);
 
   return (
     <form
@@ -79,7 +81,7 @@ export default function Signup() {
       />
       <div className=" flex justify-between align-bottom">
         <Button
-          text="Register"
+          text={loading ? "Regitering..." : "Register"}
           style="bg-brand-orange text-white hover:bg-white hover:text-brand-orange hover:border-brand-orange transition duration-300 ease-in-out"
           type="submit"
         />
