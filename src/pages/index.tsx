@@ -1,4 +1,4 @@
-import { Topbar } from "@/components";
+import { ProblemsTable, Topbar } from "@/components";
 import { Inter } from "next/font/google";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -33,6 +33,7 @@ export default function Home() {
               </th>
             </tr>
           </thead>
+          <ProblemsTable />
         </table>
       </div>
     </main>
