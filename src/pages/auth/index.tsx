@@ -1,12 +1,28 @@
 import { atomAuthModalState } from "@/atoms/authModal.atom";
 import { Navbar } from "@/components";
 import { ModalLayout } from "@/components/modals";
+import { firebaseAuth } from "@/firebase/firebase";
 import Head from "next/head";
 import Image from "next/image";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
 import { useRecoilValue } from "recoil";
 
 export default function Authentication() {
   const { isOpen } = useRecoilValue(atomAuthModalState);
+  const [user, loading, error] = useAuthState(firebaseAuth);
+  const [pageLoading, setPageLoading] = useState(true);
+  const router = useRouter();
+
+  useEffect(() => {
+    if (!user && !loading) setPageLoading(false);
+
+    if (user) router.push("/");
+  }, [user, router, loading]);
+
+  if (pageLoading) return null;
+
   return (
     <>
       <Head>
