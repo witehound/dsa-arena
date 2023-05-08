@@ -5,3 +5,9 @@ export const FORGOT_PASSWORD = "forgotpassword"
 export const SUCCESS = "SUCCESSs";
 export const ERROR = "error";
 export const INFO = "info";
+
+export const TOAST_MESSAGES = {
+    LOGIN: "Log in Successful",
+    RESET: "Reset link sent your email",
+    REGISTRATION : "Registration Successful"
+}
