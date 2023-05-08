@@ -44,10 +44,6 @@ export default function Signup() {
         router.push("/");
         createToast(SUCCESS, "Registration Successful");
       } catch (error: any) {
-        createToast(
-          ERROR,
-          fireBaseErrors[error?.message as keyof typeof fireBaseErrors]
-        );
         console.log("ERROR : register user", error?.message);
       }
     },
@@ -59,7 +55,6 @@ export default function Signup() {
         ERROR,
         fireBaseErrors[error?.message as keyof typeof fireBaseErrors]
       );
-      console.log("ERROR : register user", error?.message);
     }
   }, [error, createToast]);
 

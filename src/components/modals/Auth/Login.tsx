@@ -38,10 +38,6 @@ export default function Login() {
         router.push("/");
         createToast(SUCCESS, "Log in Successful");
       } catch (error: any) {
-        createToast(
-          ERROR,
-          fireBaseErrors[error?.message as keyof typeof fireBaseErrors]
-        );
         console.log("ERROR : register user", error?.message);
       }
     },
@@ -53,7 +49,6 @@ export default function Login() {
         ERROR,
         fireBaseErrors[error?.message as keyof typeof fireBaseErrors]
       );
-      console.log("ERROR : login user", error?.message);
     }
   }, [error, createToast]);
 
