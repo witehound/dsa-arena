@@ -1,5 +1,6 @@
 import { youtubeAtomModalState } from "@/atoms/youtubeModal.atom";
 import { YoutubeModalType } from "@/types";
+import { useEffect } from "react";
 import { IoClose } from "react-icons/io5";
 import YouTube from "react-youtube";
 import { useRecoilValue, useSetRecoilState } from "recoil";
@@ -10,6 +11,15 @@ export default function YoutubeModal({}: YoutubeModalType) {
   const handleCloseModal = () => {
     updateYoutubeModalState({ isOpen: false, videoId: undefined });
   };
+
+  useEffect(() => {
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key == "Escape") handleCloseModal();
+    };
+    window.addEventListener("keydown", handleEscape);
+    return () => window.removeEventListener("keydown", handleEscape);
+  }, [handleCloseModal]);
+
   return (
     <>
       <div className="fixed top-0 left-0 h-screen w-screen flex items-center justify-center ">
