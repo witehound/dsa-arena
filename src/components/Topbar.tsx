@@ -1,12 +1,25 @@
 import { firebaseAuth } from "@/firebase/firebase";
 import Image from "next/image";
 import Link from "next/link";
-import { useAuthState } from "react-firebase-hooks/auth";
+import { useAuthState, useSignOut } from "react-firebase-hooks/auth";
 import { Button } from ".";
 import { FiLogOut } from "react-icons/fi";
+import { useSetRecoilState } from "recoil";
+import { atomAuthModalState } from "@/atoms/authModal.atom";
 
 export default function Topbar() {
   const [user] = useAuthState(firebaseAuth);
+  const setAuthModalState = useSetRecoilState(atomAuthModalState);
+
+  const [signOut, loading, error] = useSignOut(firebaseAuth);
+
+  const handleLogOut = () => {
+    signOut();
+  };
+
+  const openLoginModal = () => {
+    setAuthModalState((prev) => ({ ...prev, isOpen: true }));
+  };
   return (
     <nav className="relative flex h-[50px] w-full shrink-0 items-center px-5 bg-dark-layer-1 text-dark-gray-7">
       <div
@@ -43,10 +56,11 @@ export default function Topbar() {
                 text={<FiLogOut />}
                 style="bg-dark-fill-3 py-1.5 px-3 cursor-pointer rounded text-brand-orange"
                 type="button"
+                handleClick={handleLogOut}
               />
             </>
           ) : (
-            <Link href="/auth">
+            <Link href="/auth" onClick={openLoginModal}>
               <button className="bg-dark-fill-3 py-1 px-2 cursor-pointer rounded ">
                 Log In
               </button>
