@@ -1,7 +1,10 @@
+import { firebaseAuth } from "@/firebase/firebase";
 import Image from "next/image";
 import Link from "next/link";
+import { useAuthState } from "react-firebase-hooks/auth";
 
 export default function Topbar() {
+  const [user] = useAuthState(firebaseAuth);
   return (
     <nav className="relative flex h-[50px] w-full shrink-0 items-center px-5 bg-dark-layer-1 text-dark-gray-7">
       <div
@@ -22,11 +25,24 @@ export default function Topbar() {
               Premium
             </a>
           </div>
-          <Link href="/auth">
-            <button className="bg-dark-fill-3 py-1 px-2 cursor-pointer rounded ">
-              Log In
-            </button>
-          </Link>
+          {user ? (
+            <div className=" relative cursor-pointer group">
+              <Image src="/avatar.png" alt="avater" width={30} height={30} />
+              <div
+                className="absolute top-10 left-2/4 -translate-x-2/4  mx-auto bg-dark-layer-1 text-brand-orange p-2 rounded shadow-lg 
+								z-40 group-hover:scale-100 scale-0 
+								transition-all duration-300 ease-in-out"
+              >
+                <p>{user.email}</p>
+              </div>
+            </div>
+          ) : (
+            <Link href="/auth">
+              <button className="bg-dark-fill-3 py-1 px-2 cursor-pointer rounded ">
+                Log In
+              </button>
+            </Link>
+          )}
         </div>
       </div>
     </nav>
