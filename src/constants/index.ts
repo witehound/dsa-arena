@@ -2,7 +2,7 @@ export const LOGIN = "login"
 export const REGISTER = "register"
 export const FORGOT_PASSWORD = "forgotpassword"
 
-export const SUCCESS = "SUCCESSs";
+export const SUCCESS = "success";
 export const ERROR = "error";
 export const INFO = "info";
 
