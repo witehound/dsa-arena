@@ -1,5 +1,11 @@
 import { Button, Input } from "@/components";
-import { ERROR, FORGOT_PASSWORD, REGISTER, SUCCESS } from "@/constants";
+import {
+  ERROR,
+  FORGOT_PASSWORD,
+  REGISTER,
+  SUCCESS,
+  TOAST_MESSAGES,
+} from "@/constants";
 import { fireBaseErrors, firebaseAuth } from "@/firebase/firebase";
 import { useHandleAuthModel, useToasify } from "@/hooks";
 import { useFormik } from "formik";
@@ -36,7 +42,7 @@ export default function Login() {
         const existingUser = await signInWithEmailandPassword(email, password);
         if (!existingUser) return;
         router.push("/");
-        createToast(SUCCESS, "Log in Successful");
+        createToast(SUCCESS, TOAST_MESSAGES.LOGIN);
       } catch (error: any) {
         console.log("ERROR : register user", error?.message);
       }

@@ -1,6 +1,6 @@
 "use client";
 import { Button, Input } from "@/components";
-import { ERROR, LOGIN, SUCCESS } from "@/constants";
+import { ERROR, LOGIN, SUCCESS, TOAST_MESSAGES } from "@/constants";
 import { useHandleAuthModel, useToasify } from "@/hooks";
 import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
 import { useFormik } from "formik";
@@ -42,7 +42,7 @@ export default function Signup() {
         );
         if (!newUser) return;
         router.push("/");
-        createToast(SUCCESS, "Registration Successful");
+        createToast(SUCCESS, TOAST_MESSAGES.REGISTRATION);
       } catch (error: any) {
         console.log("ERROR : register user", error?.message);
       }

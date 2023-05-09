@@ -1,5 +1,5 @@
 import { Button, Input } from "@/components";
-import { ERROR, LOGIN, SUCCESS } from "@/constants";
+import { ERROR, LOGIN, SUCCESS, TOAST_MESSAGES } from "@/constants";
 import { fireBaseErrors, firebaseAuth } from "@/firebase/firebase";
 import { useSendPasswordResetEmail } from "react-firebase-hooks/auth";
 import { useFormik } from "formik";
@@ -50,8 +50,7 @@ export default function ResetPassword() {
   }, [error, createToast]);
 
   useEffect(() => {
-    if (resetPassWordStatus)
-      createToast(SUCCESS, `Reset link sent to ${formik.values.email}`);
+    if (resetPassWordStatus) createToast(SUCCESS, TOAST_MESSAGES.RESET);
   }, [resetPassWordStatus, createToast]);
 
   return (
