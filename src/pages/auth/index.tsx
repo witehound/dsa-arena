@@ -8,7 +8,7 @@ export default function Authentication() {
         <title>DSArena | Authentication</title>
       </Head>
       <div className=" bg-gradient-to-b from-gray-600 to-black h-screen relative flex items-center flex-col w-full">
-        <div className="min-w-[1020px]">
+        <div className="min-w-[1280px]">
           <Navbar />
           Authentication page
         </div>

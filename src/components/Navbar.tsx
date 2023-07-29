@@ -8,7 +8,11 @@ export default function Navbar() {
         <img src="/logo.png" alt="dsarena logo" className=" h-full" />
       </Link>
       <div className=" flex items-center justify-center">
-        <Button style="bg-brand-orange" type="button" text="Sign In" />
+        <Button
+          style="bg-brand-orange text-white hover:bg-white hover:text-brand-orange hover:border-2 hover:border-brand-orange transition duration-300 ease-in-out"
+          type="button"
+          text="Sign In"
+        />
       </div>
     </div>
   );
