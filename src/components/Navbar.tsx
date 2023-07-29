@@ -8,7 +8,7 @@ export default function Navbar() {
         <img src="/logo.png" alt="dsarena logo" className=" h-full" />
       </Link>
       <div className=" flex items-center justify-center">
-        <Button style="" type="button" />
+        <Button style="bg-brand-orange" type="button" text="Sign In" />
       </div>
     </div>
   );
