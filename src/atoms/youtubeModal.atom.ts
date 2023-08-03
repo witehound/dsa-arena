@@ -6,7 +6,7 @@ type youtubeModalState = {
 }
 
 const initialatomYoutubeModalState: youtubeModalState = {
-    isOpen: true,
+    isOpen: false,
     videoId : undefined
 }
 
