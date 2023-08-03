@@ -1,4 +1,5 @@
 import { ProblemsTable, Topbar } from "@/components";
+import { YoutubeModal } from "@/components/modals";
 import { Inter } from "next/font/google";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -35,6 +36,7 @@ export default function Home() {
           </thead>
           <ProblemsTable />
         </table>
+        <YoutubeModal />
       </div>
     </main>
   );
