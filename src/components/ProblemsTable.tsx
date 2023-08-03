@@ -53,7 +53,9 @@ export default function ProblemsTable() {
                     }}
                   />
                 ) : (
-                  <p className=" text-gray-400">Coming soon</p>
+                  <p className=" text-gray-400 cursor-not-allowed">
+                    Coming soon
+                  </p>
                 )}
               </td>
             </tr>
