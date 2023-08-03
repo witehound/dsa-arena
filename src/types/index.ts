@@ -28,6 +28,10 @@ export type Problem = {
 	videoId?: string;
 };
 
+export type YoutubeModalType = {
+    url? : string | undefined
+}
+
 
 export type loginType = "login"
 export type registerType = "register"

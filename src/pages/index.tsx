@@ -1,10 +1,13 @@
+import { youtubeAtomModalState } from "@/atoms/youtubeModal.atom";
 import { ProblemsTable, Topbar } from "@/components";
 import { YoutubeModal } from "@/components/modals";
 import { Inter } from "next/font/google";
+import { useRecoilValue } from "recoil";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
+  const youtubeModalState = useRecoilValue(youtubeAtomModalState);
   return (
     <main className={` bg-dark-layer-2 min-h-screen ${inter.className}`}>
       <Topbar />
@@ -36,7 +39,7 @@ export default function Home() {
           </thead>
           <ProblemsTable />
         </table>
-        <YoutubeModal />
+        {youtubeModalState.isOpen ? <YoutubeModal /> : null}
       </div>
     </main>
   );
