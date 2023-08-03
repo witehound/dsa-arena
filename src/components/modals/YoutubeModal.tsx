@@ -1,14 +1,14 @@
 import { youtubeAtomModalState } from "@/atoms/youtubeModal.atom";
 import { YoutubeModalType } from "@/types";
-
 import { IoClose } from "react-icons/io5";
 import YouTube from "react-youtube";
-import { useSetRecoilState } from "recoil";
+import { useRecoilValue, useSetRecoilState } from "recoil";
 export default function YoutubeModal({}: YoutubeModalType) {
   const updateYoutubeModalState = useSetRecoilState(youtubeAtomModalState);
+  const { videoId } = useRecoilValue(youtubeAtomModalState);
 
   const handleCloseModal = () => {
-    updateYoutubeModalState((prev) => ({ isOpen: false, videoId: undefined }));
+    updateYoutubeModalState({ isOpen: false, videoId: undefined });
   };
   return (
     <>
@@ -25,7 +25,7 @@ export default function YoutubeModal({}: YoutubeModalType) {
               </div>
 
               <YouTube
-                videoId={"xty7fr-k0TU"}
+                videoId={videoId}
                 loading="lazy"
                 iframeClassName="w-full min-h-[500px]"
               />
