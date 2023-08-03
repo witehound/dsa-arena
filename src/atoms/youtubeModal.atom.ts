@@ -6,12 +6,12 @@ type youtubeModalState = {
 }
 
 const initialatomYoutubeModalState: youtubeModalState = {
-    isOpen: false,
+    isOpen: true,
     videoId : undefined
 }
 
 
 export const youtubeAtomModalState = atom<youtubeModalState>({
-    key: "AuthModalState",
+    key: "youtubeModalState",
     default : initialatomYoutubeModalState
 })

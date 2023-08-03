@@ -1,8 +1,15 @@
+import { youtubeAtomModalState } from "@/atoms/youtubeModal.atom";
 import { YoutubeModalType } from "@/types";
 
 import { IoClose } from "react-icons/io5";
 import YouTube from "react-youtube";
+import { useSetRecoilState } from "recoil";
 export default function YoutubeModal({}: YoutubeModalType) {
+  const updateYoutubeModalState = useSetRecoilState(youtubeAtomModalState);
+
+  const handleCloseModal = () => {
+    updateYoutubeModalState((prev) => ({ isOpen: false, videoId: undefined }));
+  };
   return (
     <>
       <div className="fixed top-0 left-0 h-screen w-screen flex items-center justify-center ">
@@ -10,7 +17,7 @@ export default function YoutubeModal({}: YoutubeModalType) {
         <div className="w-full z-50 h-full px-6 relative max-w-4xl">
           <div className="w-full h-full flex items-center justify-center relative">
             <div className="w-full relative">
-              <div onClick={() => {}}>
+              <div onClick={handleCloseModal}>
                 <IoClose
                   fontSize={"35"}
                   className="cursor-pointer absolute -top-[60px] right-0 text-white"
